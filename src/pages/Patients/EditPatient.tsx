@@ -12,7 +12,7 @@ export default function EditPatient()
 {
   // Déclarariotn
   const { theme } = useTheme();
-  const { patients, dispatchPatients, dispatchNotification } = useDonnee();
+  const { patients, dispatchPatients, dispatchNotification, parametre } = useDonnee();
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -87,7 +87,7 @@ export default function EditPatient()
     dispatchPatients({
       type: "Update"
     })
-    Swal.fire("Clinique de Kevin", "Modification réussie", "success");
+    Swal.fire( `${parametre.nomEtablissement}`, "Modification réussie", "success");
     navigate('/Patients');
     dispatchNotification({
       type: "Ajout",

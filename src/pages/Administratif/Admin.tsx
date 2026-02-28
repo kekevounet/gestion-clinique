@@ -13,7 +13,7 @@ export default function Admin()
 {
   // Déclaration
   const { theme } = useTheme();
-  const { administratif, setAdministratif, dispatchNotification } = useDonnee();
+  const { administratif, setAdministratif, dispatchNotification, parametre } = useDonnee();
   const [ searchTerm, setSearchTerm ] = useState<string>("")
   const styleTableau = `w-[20%] p-3 border-x ${theme === 'clair' ? 'border-zinc-200' : 'border-zinc-800' }`;
 
@@ -21,7 +21,7 @@ export default function Admin()
   const handleDelete = (id:number) =>
   {
     Swal.fire({
-      title: 'Clinique de Kevin',
+      title: `${parametre.nomEtablissement}`,
       text: "Êtes vous sur de vouloir le supprimer ?",
       icon: "warning",
       showCancelButton: true,
@@ -34,7 +34,7 @@ export default function Admin()
           type: "Delete",
           payload: id
         });
-        Swal.fire("Clinique de Kevin", "Un docteur a été supprimé", "success");
+        Swal.fire(`${parametre.nomEtablissement}`, "Un docteur a été supprimé", "success");
         dispatchNotification({
           type: "Ajout",
           payload: {
@@ -109,11 +109,11 @@ export default function Admin()
             (
               filteredAdmin.map((admin)=>(
                 <div key={admin.id} className={`w-full min-h-20 flex items-center justify-between text-center text-xl ${theme === 'clair' ? 'bg-zinc-100' : 'bg-zinc-900' }`}>
-                  <span className="w-[20%] p-3">{admin.nom}</span>
-                  <span className={styleTableau}>{admin.prenom}</span>
-                  <span className="w-[20%] p-3">{admin.numeroTelephone}</span>
-                  <span className={styleTableau}>{admin.specialite}</span>
-                  <span className="w-[20%] p-3 flex items-center justify-center text-4xl space-x-4">
+                  <span className="w-[20%] p-3 overflow-auto">{admin.nom}</span>
+                  <span className={`overflow-auto ${styleTableau}`}>{admin.prenom}</span>
+                  <span className="w-[20%] p-3 overflow-auto">{admin.numeroTelephone}</span>
+                  <span className={`overflow-auto ${styleTableau}`}>{admin.specialite}</span>
+                  <span className="w-[20%] p-3 flex items-center overflow-auto justify-center text-4xl space-x-4">
                     <Link to={`/Admin/Infos/${admin.id}`} className="text-green-500 cursor-pointer hover:opacity-60 hover:scale-105 duration-100"><MdOutlineViewQuilt data-tooltip-id="View-tooltip" data-tooltip-content="Voir ce administrateur" /></Link>
                     <Link to={`/Admin/Edit/${admin.id}`} className="text-blue-500 cursor-pointer hover:opacity-60 hover:scale-105 duration-100"><BiEdit data-tooltip-id="Edit-tooltip" data-tooltip-content="Modifier ce administrateur" /></Link>
                     <span className="text-red-500 cursor-pointer hover:opacity-60 hover:scale-105 duration-100"><BiTrash data-tooltip-id="Delete-tooltip" data-tooltip-content="Supprimer ce administrateur" onClick={() => handleDelete(admin.id)} /></span>

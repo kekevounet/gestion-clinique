@@ -1,3 +1,4 @@
+import { TbZoomQuestion } from "react-icons/tb";
 import { FaUserInjured } from "react-icons/fa";
 import { FaUserNurse } from "react-icons/fa";
 import { RiHistoryLine } from "react-icons/ri";
@@ -32,6 +33,7 @@ export default function SideBar()
     },
     { titre: "Médicament", icon: <HiBeaker />, lien: "Medicament" },
     { titre: "Statistiques", icon: <HiChartBar />, lien: "Statistiques" },
+    { titre: "Recherches", icon: <TbZoomQuestion />, lien: "Recherches" },
     { titre: "Paramètre", icon: <HiCog />, lien: "Parametre" },
     {
       titre: "Notification",
@@ -42,7 +44,7 @@ export default function SideBar()
     { titre: "Support", icon: <HiSupport />, lien: "Support" },
   ];
   const [ openMenu, setOpenMenu ] = useState<number |null>(null);
-  const { theme, toggleTheme } = useTheme();
+  const { theme } = useTheme();
 
   // Comportement
   const handleClick = (index: number) =>
@@ -112,7 +114,7 @@ export default function SideBar()
           </div>
         ))}
 
-        <div className="w-full h-10 bg-gray-950 text-white" onClick={toggleTheme}>Thème</div>
+        {/* <div className="w-full h-10 bg-gray-950 text-white" onClick={toggleTheme}>Thème</div> */}
 
       </div>
     </div>

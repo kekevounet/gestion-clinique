@@ -14,14 +14,14 @@ export default function Docteurs()
   // Déclaration
   const { theme } = useTheme();
   const styleTableau = `w-[20%] p-3 border-x ${theme === 'clair' ? 'border-zinc-200' : 'border-zinc-800' }`;
-  const { docteurs, setDocteurs, dispatchNotification } = useDonnee();
+  const { docteurs, setDocteurs, dispatchNotification, parametre } = useDonnee();
   const [ searchTerm, setSearchTerm ] = useState<string>("");
 
   // Comportement
   const handleDelete = (id:number) =>
   {
     Swal.fire({
-      title: 'Clinique de Kevin',
+      title: `${parametre.nomEtablissement}`,
       text: "Êtes vous sur de vouloir le supprimer ?",
       icon: "warning",
       showCancelButton: true,
@@ -34,7 +34,7 @@ export default function Docteurs()
           type: "Delete",
           payload: id
         });
-        Swal.fire("Clinique de Kevin", "Un docteur a été supprimé", "success");
+        Swal.fire(`${parametre.nomEtablissement}`, "Un docteur a été supprimé", "success");
         dispatchNotification({
           type: "Ajout",
           payload: {
@@ -110,11 +110,11 @@ export default function Docteurs()
             (
               filteredDocteurs.map((docteur)=>(
                 <div key={docteur.id} className={`w-full min-h-20 flex items-center justify-between text-center text-xl ${theme === 'clair' ? 'bg-zinc-100' : 'bg-zinc-900' }`}>
-                  <span className="w-[20%] p-3">{docteur.nom}</span>
-                  <span className={styleTableau}>{docteur.prenom}</span>
-                  <span className="w-[20%] p-3">{docteur.numeroTelephone}</span>
-                  <span className={styleTableau}>{docteur.specialite}</span>
-                  <span className="w-[20%] p-3 flex items-center justify-center text-4xl space-x-4">
+                  <span className="w-[20%] p-3 overflow-auto">{docteur.nom}</span>
+                  <span className={`overflow-auto ${styleTableau}`}>{docteur.prenom}</span>
+                  <span className="w-[20%] p-3 overflow-auto">{docteur.numeroTelephone}</span>
+                  <span className={`overflow-auto ${styleTableau}`}>{docteur.specialite}</span>
+                  <span className="w-[20%] p-3 flex items-center overflow-auto justify-center text-4xl space-x-4">
                     <Link to={`/Docteurs/Infos/${docteur.id}`} className="text-green-500 cursor-pointer hover:opacity-60 hover:scale-105 duration-100"><MdOutlineViewQuilt data-tooltip-id="View-tooltip" data-tooltip-content="Voir ce docteur" /></Link>
                     <Link to={`/Docteurs/Edit/${docteur.id}`} className="text-blue-500 cursor-pointer hover:opacity-60 hover:scale-105 duration-100"><BiEdit data-tooltip-id="Edit-tooltip" data-tooltip-content="Modifier ce docteur" /></Link>
                     <span className="text-red-500 cursor-pointer hover:opacity-60 hover:scale-105 duration-100"><BiTrash data-tooltip-id="Delete-tooltip" data-tooltip-content="Supprimer ce docteur" onClick={() =>handleDelete(docteur.id)} /></span>

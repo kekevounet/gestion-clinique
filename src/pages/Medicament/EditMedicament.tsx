@@ -12,7 +12,7 @@ export default function EditMedicament()
   // Déclarariotn
   const { theme } = useTheme();
   const { id } = useParams();
-  const { medoc, dispatchMedoc, dispatchNotification } = useDonnee();
+  const { medoc, dispatchMedoc, dispatchNotification, parametre } = useDonnee();
   const navigate = useNavigate();
   const InfosMedocs = [
     { field: "Nom", type: "text", name: "nom" },
@@ -39,7 +39,7 @@ export default function EditMedicament()
     dispatchMedoc({
       type: 'Update'
     });
-    Swal.fire("Clinique de Kevin", "Modification avec succès", "success");
+    Swal.fire(`${parametre.nomEtablissement}`, "Modification avec succès", "success");
     navigate('/Medicament');
     dispatchNotification({
       type: "Ajout",

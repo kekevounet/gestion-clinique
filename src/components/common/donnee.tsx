@@ -65,7 +65,7 @@ export function DonneeProvider({ children }: { children : React.ReactNode})
   // Déclaration
   const [ parametre, setParametre ] = useState<parametreType>(
     {
-      nomEtablissement: "Clinique de Niavo",
+      nomEtablissement: "Gestion de clinique",
       adresse: "IAG 05 J Itaosy",
       numeroPrincipal: "0389423351",
       emailOfficiel: "niavo.kevin9@gmail.com",

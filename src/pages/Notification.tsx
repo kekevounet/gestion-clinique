@@ -11,14 +11,14 @@ export default function Notification()
 {
   // Déclaration
   const { theme } = useTheme();
-  const { notification, dispatchNotification } = useDonnee();
+  const { notification, dispatchNotification, parametre } = useDonnee();
   const [ searchTerm, setSearchTerm ] = useState('');
 
   // Comportement
   const handleDelete = ( id: number ) =>
   {
     Swal.fire({
-      title: 'Clinique de Kevin',
+      title: `${parametre.nomEtablissement}`,
       text: "Êtes vous sur de vouloir le supprimer ?",
       icon: "warning",
       showCancelButton: true,
@@ -32,7 +32,7 @@ export default function Notification()
             type: "Delete",
             payload: id
           })
-          Swal.fire("Clinique de Kevin", "Cette notification a été supprimé", "success")
+          Swal.fire(`${parametre.nomEtablissement}`, "Cette notification a été supprimé", "success")
         }
     })
   }
@@ -46,7 +46,7 @@ export default function Notification()
   const handleDeleteAll = () =>
   {
     Swal.fire({
-      title: "Clinique de Niavo",
+      title: `${parametre.nomEtablissement}`,
       text: "Voulez-vous vraiment tout supprimer ?",
       icon: "warning",
       showCancelButton: true,
@@ -59,7 +59,7 @@ export default function Notification()
         dispatchNotification({
           type: "DeleteAll"
         });
-        Swal.fire("Clinique de Kevin", "Tous les notifications ont été supprimés", "success")
+        Swal.fire(`${parametre.nomEtablissement}`, "Tous les notifications ont été supprimés", "success")
       }
     })
   }
@@ -89,11 +89,11 @@ export default function Notification()
       </div>
 
       {/* Contenu notification */}
-      <div className="w-full h-[91.55] overflow-auto p-10 grid-cols-3 grid gap-4">
+      <div className="w-full h-[91.55%] overflow-auto p-10 grid-cols-3 grid-rows-3 grid gap-4">
 
         {filteredNotif.map(notif => (
-          <section key={notif.id} className={`w-full h-[20vh] shadow-md relative duration-300 group ${theme === 'clair' ? 'bg-zinc-100' : 'bg-zinc-900' } `}>
-            <div className={`w-full h-[35%] flex justify-between items-center`}>
+          <section key={notif.id} className={`w-full min-h-[20vh] shadow-md  relative duration-300 group ${theme === 'clair' ? 'bg-zinc-100' : 'bg-zinc-900' } `}>
+            <div className={`w-full h-[30%] flex justify-between items-center`}>
               <p className={`ml-4 text-2xl font-bold
                 ${notif.type === 'Modification' ? 'text-blue-500' :
                   notif.type === 'Suppression' ? 'text-red-500' :

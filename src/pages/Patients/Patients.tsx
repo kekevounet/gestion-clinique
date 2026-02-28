@@ -13,7 +13,7 @@ export default function Patients()
 {
   // Déclaration
   const { theme } = useTheme();
-  const { patients, dispatchPatients, dispatchNotification } = useDonnee();
+  const { patients, dispatchPatients, dispatchNotification, parametre } = useDonnee();
   const [ searchTerm, setSearchTerm ] = useState<string>('')
   const styleTableau = `w-[20%] p-3 border-x ${theme === 'clair' ? 'border-zinc-200' : 'border-zinc-800' }`;
 
@@ -21,7 +21,7 @@ export default function Patients()
   const handleDelete = (id:number) =>
   {
     Swal.fire({
-      title: 'Clinique de Kevin',
+      title: `${parametre.nomEtablissement}`,
       text: "Êtes vous sur de vouloir le supprimer ?",
       icon: "warning",
       showCancelButton: true,
@@ -35,7 +35,7 @@ export default function Patients()
           type: "Delete",
           payload: id
         })
-        Swal.fire("Clinique de Kevin", "Un patient a été supprimé", "success")
+        Swal.fire(`${parametre.nomEtablissement}`, "Un patient a été supprimé", "success")
         dispatchNotification({
           type: "Ajout",
           payload: {
@@ -88,10 +88,10 @@ export default function Patients()
       <div className="w-full h-[91.55%] overflow-auto flex flex-col p-6 gap-2">
 
         {/* Information patient titre */}
-        <div className={`w-full h-20 flex items-center justify-between text-center font-bold text-xl ${theme === 'clair' ? 'bg-zinc-100' : 'bg-zinc-900' }`}>
+        <div className={`w-full min-h-20 flex items-center justify-between text-center font-bold text-xl ${theme === 'clair' ? 'bg-zinc-100' : 'bg-zinc-900' }`}>
           <span className="w-[20%] p-3">Nom et prénom</span>
           <span className={styleTableau}>Numéro de téléphone</span>
-          <span className="w-[20%] p-3">Symptôme observé</span>
+          <span className="w-[20%] p-3">Maladie observé</span>
           <span className={styleTableau}>Décision du médecin</span>
           <span className="w-[20%] p-3">Actions</span>
         </div>
@@ -110,11 +110,11 @@ export default function Patients()
             (
               filteredTaleau.map((patient)=>(
               <div key={patient.id} className={`w-full min-h-20 flex items-center justify-between text-center text-xl ${theme === 'clair' ? 'bg-zinc-100' : 'bg-zinc-900' }`}>
-                <span className="w-[20%] p-3">{patient.nom} {''} {patient.prenom}</span>
-                <span className={styleTableau}>{patient.numeroTelephone}</span>
-                <span className="w-[20%] p-3">{patient.symptomeObserve}</span>
-                <span className={styleTableau}>{patient.decisionFinale}</span>
-                <span className="w-[20%] p-3 flex items-center justify-center text-4xl space-x-4">
+                <span className="w-[20%] p-3 overflow-auto">{patient.nom} {''} {patient.prenom}</span>
+                <span className={`overflow-auto ${styleTableau}`}>{patient.numeroTelephone}</span>
+                <span className="w-[20%] p-3 overflow-auto">{patient.symptomeObserve}</span>
+                <span className={`overflow-auto ${styleTableau}`}>{patient.decisionFinale}</span>
+                <span className="w-[20%] p-3 flex items-center overflow-auto justify-center text-4xl space-x-4">
                   <Link to={`/Patients/Infos/${patient.id}`} className="text-green-500 cursor-pointer hover:opacity-60 hover:scale-105 duration-100"><MdOutlineViewQuilt data-tooltip-id="View-tooltip" data-tooltip-content="Voir ce patient" /></Link>
                   <Link to={`/Patients/Edit/${patient.id}`} className="text-blue-500 cursor-pointer hover:opacity-60 hover:scale-105 duration-100"><BiEdit data-tooltip-id="Edit-tooltip" data-tooltip-content="Modifier ce patient" /></Link>
                   <span className="text-red-500 cursor-pointer hover:opacity-60 hover:scale-105 duration-100"><BiTrash data-tooltip-id="Delete-tooltip" data-tooltip-content="Supprimer ce patient" onClick={() =>handleDelete(patient.id)} /></span>

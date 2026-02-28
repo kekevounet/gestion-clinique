@@ -11,7 +11,7 @@ export default function EditRendez_vous()
 {
   // Déclarariotn
   const { theme } = useTheme();
-  const { meet, dispatchMeet, dispatchNotification } = useDonnee();
+  const { meet, dispatchMeet, dispatchNotification, parametre } = useDonnee();
   const navigate = useNavigate();
   const { id } = useParams();
   const InfosPatients = [
@@ -52,7 +52,7 @@ export default function EditRendez_vous()
     dispatchMeet({
       type: "Update",
     });
-    Swal.fire("Clinique de Kevin", "Modification réussie", "success");
+    Swal.fire(`${parametre.nomEtablissement}`, "Modification réussie", "success");
     navigate('/Rendez-vous');
     dispatchNotification({
       type: "Ajout",

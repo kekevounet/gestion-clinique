@@ -138,7 +138,7 @@ export default function Dashboard()
           {/* Nombrede  RDV */}
           <Link to='/Rendez-vous/Ajout' data-tooltip-id="RDV" data-tooltip-content="Ajouter un rendez-vous" className={` flex hover:shadow-xl hover:-translate-y-0.5 duration-300 cursor-pointer flex-col space-y-5 text-2xl justify-center items-center ${style}`}>
             <span className="text-4xl"><BiCalendarEdit /></span>
-            <span className="text-center">Nombre de rendez-vous prévus en attente: {meet.MeetTableau.length}</span>
+            <span className="text-center">Nombre de rendez-vous prévus enregister: {meet.MeetTableau.length}</span>
           </Link>
 
           {/* Rendez-vous */}

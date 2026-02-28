@@ -12,7 +12,7 @@ export default function Consultation()
 {
   // Déclarariotn
   const { theme } = useTheme();
-  const { patients, dispatchPatients, dispatchNotification } = useDonnee();
+  const { patients, dispatchPatients, dispatchNotification, dispatchHistorique, parametre } = useDonnee();
   const navigate = useNavigate();
 
   const InfosPatients = [
@@ -99,8 +99,18 @@ export default function Consultation()
         date: new Date().toLocaleString('fr-FR')
       }
     })
-    Swal.fire("Clinique de Kevin", "Patient ajouté avec succès", "success");
+    Swal.fire(`${parametre.nomEtablissement}`, "Patient ajouté avec succès", "success");
     navigate('/Patients');
+    dispatchHistorique({
+      type: "Ajout",
+      payload: {
+        id: Date.now(),
+        type: "Consultation",
+        nom: `${nom} ${prenom}`,
+        info: `${symptomeObserve}`,
+        date: new Date().toLocaleString()
+      }
+    })
   }
 
 

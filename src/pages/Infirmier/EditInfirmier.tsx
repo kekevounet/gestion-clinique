@@ -10,7 +10,7 @@ export default function EditInfirmier()
   // Déclarariotn
   const { theme } = useTheme();
   const { id } = useParams();
-  const { infirmier, setInfirmier, dispatchNotification } = useDonnee();
+  const { infirmier, setInfirmier, dispatchNotification, parametre } = useDonnee();
   const navigate = useNavigate();
   const infirmiers = infirmier.find(i=> i.id === Number(id))
 
@@ -71,7 +71,7 @@ export default function EditInfirmier()
       type: "Update",
       payload: updatedInfirmier
     })
-    Swal.fire('Clinique de Kevin','Modification réussie','success')
+    Swal.fire(`${parametre.nomEtablissement}`,'Modification réussie','success')
     navigate('/Infirmier');
     dispatchNotification({
       type: "Ajout",

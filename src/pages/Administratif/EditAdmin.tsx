@@ -12,7 +12,7 @@ export default function EditAdmin()
   const { theme } = useTheme();
   const { id } = useParams();
   const navigate = useNavigate()
-  const { administratif, setAdministratif, dispatchNotification } = useDonnee();
+  const { administratif, setAdministratif, dispatchNotification, parametre } = useDonnee();
   const admin = administratif.find(a => a.id === Number(id))
   const [ formData, setFormData ] = useState({
     nom: admin?.nom || "",
@@ -73,7 +73,7 @@ export default function EditAdmin()
       payload: updatedAdministratif
     });
 
-    Swal.fire("Clinique de Kevin", "Modification réussie", "success");
+    Swal.fire(`${parametre.nomEtablissement}`, "Modification réussie", "success");
     navigate('/Admin');
     dispatchNotification({
       type: "Ajout",

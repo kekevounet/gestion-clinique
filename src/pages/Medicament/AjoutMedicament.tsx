@@ -10,7 +10,7 @@ export default function AjoutMedicament()
 {
   // Déclarariotn
   const { theme } = useTheme();
-  const { medoc, dispatchMedoc, dispatchNotification } = useDonnee();
+  const { medoc, dispatchMedoc, dispatchNotification, dispatchHistorique, parametre } = useDonnee();
   const navigate = useNavigate();
   const InfosMedocs = [
     { field: "Nom", type: "text", name: "nom" },
@@ -45,10 +45,20 @@ export default function AjoutMedicament()
         date: new Date().toLocaleString()
       }
     })
+    dispatchHistorique({
+      type: "Ajout",
+      payload: {
+        id: Date.now(),
+        type: "Médicament",
+        nom: `${nom}`,
+        info: `${quantite}`,
+        date: new Date().toLocaleString('fr-FR')
+      }
+    })
     dispatchMedoc({
       type: "Ajout"
     });
-    Swal.fire("Clinique de Kevin", "Médicament ajouté avec succès", "success");
+    Swal.fire(`${parametre.nomEtablissement}`, "Médicament ajouté avec succès", "success");
     navigate('/Medicament');
   }
 

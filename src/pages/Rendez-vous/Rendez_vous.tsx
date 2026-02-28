@@ -13,14 +13,14 @@ export default function Rendez_vous()
 {
   // Déclaration
   const { theme } = useTheme();
-  const { meet, dispatchMeet, dispatchNotification } = useDonnee();
+  const { meet, dispatchMeet, dispatchNotification, parametre } = useDonnee();
   const styleTableau = `w-[20%] p-3 border-x ${theme === 'clair' ? 'border-zinc-200' : 'border-zinc-800' }`;
   const [ searchTerm, setSearchTerm ] = useState("");
   // Comportement
   const handleDelete = (id:number) =>
   {
     Swal.fire({
-      title: 'Clinique de Kevin',
+      title: `${parametre.nomEtablissement}`,
       text: "Êtes vous sur de vouloir le supprimer ?",
       icon: "warning",
       showCancelButton: true,
@@ -34,7 +34,7 @@ export default function Rendez_vous()
           type: "Delete",
           payload: id
         })
-        Swal.fire("Clinique de Kevin", "Un rendez-vous a été supprimé", "success")
+        Swal.fire(`${parametre.nomEtablissement}`, "Un rendez-vous a été supprimé", "success")
         dispatchNotification({
           type: "Ajout",
           payload: {
@@ -86,7 +86,7 @@ export default function Rendez_vous()
       <div className="w-full h-[91.55%] overflow-auto flex flex-col p-6 gap-2">
 
         {/* Information patient titre */}
-        <div className={`w-full h-20 flex items-center justify-between text-center font-bold text-xl ${theme === 'clair' ? 'bg-zinc-100' : 'bg-zinc-900' }`}>
+        <div className={`w-full min-h-20 flex items-center justify-between text-center font-bold text-xl ${theme === 'clair' ? 'bg-zinc-100' : 'bg-zinc-900' }`}>
           <span className="w-[20%] p-3">Date</span>
           <span className={styleTableau}>Heure</span>
           <span className="w-[20%] p-3">Patient</span>
@@ -98,19 +98,19 @@ export default function Rendez_vous()
         {/* Information patient containera */}
         {filteredMeeting.map((rendez_vous)=>(
           <div key={rendez_vous.id} className={`w-full min-h-20 flex items-center justify-between text-center text-xl ${theme === 'clair' ? 'bg-zinc-100' : 'bg-zinc-900' }`}>
-            <span className="w-[20%] p-3">{rendez_vous.date}</span>
-            <span className={styleTableau}>{rendez_vous.heure}</span>
-            <span className="w-[20%] p-3">{rendez_vous.nom} {''} {rendez_vous.prenom}</span>
-            <span className={styleTableau}>{rendez_vous.medecin}</span>
+            <span className="w-[20%] p-3 overflow-auto">{rendez_vous.date}</span>
+            <span className={`overflow-auto ${styleTableau}`}>{rendez_vous.heure}</span>
+            <span className="w-[20%] p-3 overflow-auto">{rendez_vous.nom} {''} {rendez_vous.prenom}</span>
+            <span className={`overflow-auto ${styleTableau}`}>{rendez_vous.medecin}</span>
             <span
-              className={`w-[20%] p-3
+              className={`w-[20%] p-3 overflow-auto
                 ${rendez_vous.status === 'Annuler' ? 'text-red-600' :
-                rendez_vous.status === 'Absent' ? 'text-red-600' :
+                rendez_vous.status === 'Absent' ? 'text-red-800' :
                 rendez_vous.status === 'Confirmer' ? 'text-blue-600' :
                 rendez_vous.status === 'Terminer' ?  'text-green-600' : ''
                 }
                 `}>{rendez_vous.status}</span>
-            <span className={`w-[20%] p-3 flex items-center justify-center border-l text-4xl space-x-4 ${theme === 'clair' ? 'border-zinc-200' : 'border-zinc-800' }`}>
+            <span className={`w-[20%] p-3 flex items-center overflow-auto justify-center border-l text-4xl space-x-4 ${theme === 'clair' ? 'border-zinc-200' : 'border-zinc-800' }`}>
               <Link to={`/Rendez-vous/Infos/${rendez_vous.id}`} className="text-green-500 cursor-pointer hover:opacity-60 hover:scale-105 duration-100"><MdOutlineViewQuilt data-tooltip-id="View-tooltip" data-tooltip-content="Voir ce rendez-vous" /></Link>
               <Link to={`/Rendez-vous/Edit/${rendez_vous.id}`} className="text-blue-500 cursor-pointer hover:opacity-60 hover:scale-105 duration-100"><BiEdit data-tooltip-id="Edit-tooltip" data-tooltip-content="Modifier ce rendez-vous" /></Link>
               <span className="text-red-500 cursor-pointer hover:opacity-60 hover:scale-105 duration-100"><BiTrash data-tooltip-id="Delete-tooltip" data-tooltip-content="Supprimer ce rendez-vous" onClick={() => handleDelete(rendez_vous.id)} /></span>

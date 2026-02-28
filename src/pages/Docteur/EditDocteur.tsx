@@ -11,7 +11,7 @@ export default function EditDocteur()
   const { theme } = useTheme();
   const { id } = useParams();
   const navigate = useNavigate();
-  const { docteurs, setDocteurs, dispatchNotification } = useDonnee();
+  const { docteurs, setDocteurs, dispatchNotification, parametre } = useDonnee();
 
   const docteur = docteurs.find(d => d.id === Number(id))
 
@@ -75,7 +75,7 @@ export default function EditDocteur()
       payload: updatedDocteur,
     });
 
-    Swal.fire('Clinique de Kevin','Modification réussie','success')
+    Swal.fire(`${parametre.nomEtablissement}`,'Modification réussie','success')
     navigate('/Docteurs');
     dispatchNotification({
       type: "Ajout",

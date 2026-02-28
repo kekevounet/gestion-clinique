@@ -11,7 +11,7 @@ export default function AjoutInfirmier()
   // Déclarariotn
   const { theme } = useTheme();
   const navigate = useNavigate();
-  const { setInfirmier, dispatchNotification } = useDonnee();
+  const { setInfirmier, dispatchNotification, dispatchHistorique, parametre } = useDonnee();
   const [ formData, setFormData ] = useState(
   {
     nom: "",
@@ -62,6 +62,16 @@ export default function AjoutInfirmier()
         date: new Date().toLocaleString('fr-FR')
       }
     })
+    dispatchHistorique({
+      type: "Ajout",
+      payload: {
+        id: Date.now(),
+        type: "Infirmier",
+        nom: `${nom} ${prenom}`,
+        info: `Maîtrise du ${specialite}`,
+        date: new Date().toLocaleString('fr-FR')
+      }
+    })
     const newInfirmier =
     {
       id: Date.now(),
@@ -94,7 +104,7 @@ export default function AjoutInfirmier()
       experience: "",
       diplome: "",
     })
-    Swal.fire("Clinique de Kevin", "Docteur ajouté avec succès", "success");
+    Swal.fire(`${parametre.nomEtablissement}`, "Docteur ajouté avec succès", "success");
     navigate('/Infirmier');
 
   }

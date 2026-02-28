@@ -11,7 +11,7 @@ export default function AjoutDocteur()
   // Déclarariotn
   const { theme } = useTheme();
   const navigate = useNavigate();
-  const { setDocteurs, dispatchNotification, dispatchHistorique } = useDonnee();
+  const { setDocteurs, dispatchNotification, dispatchHistorique, parametre } = useDonnee();
   const [ formData, setFormData ] = useState({
     nom: "",
     prenom: "",
@@ -64,9 +64,9 @@ export default function AjoutDocteur()
       type: "Ajout",
       payload: {
         id: Date.now(),
-        type: "Consultation",
+        type: "Docteur",
         nom: `${nom} ${prenom}`,
-        info: "Ajout d'un docteur",
+        info: `Maîtrise du ${specialite}`,
         date: new Date().toLocaleString('fr-FR')
       }
     })
@@ -102,7 +102,7 @@ export default function AjoutDocteur()
       experience: "",
       diplome: "",
     });
-    Swal.fire("Clinique de kevin", "Docteur ajouté avec succès","success");
+    Swal.fire(`${parametre.nomEtablissement}`, "Docteur ajouté avec succès","success");
     navigate('/Docteurs')
 
   }

@@ -31,16 +31,20 @@ import Statistiques from "./pages/Statistiques";
 import Notification from "./pages/Notification";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
+import Support from "./pages/Support";
+import { useDonnee } from "./components/common/donnee";
+import Recherches from "./pages/Recheches";
 
 export default function App()
 {
   // Déclaration
   const { theme } = useTheme();
+  const { parametre } = useDonnee();
   // Comportement
   useEffect(() =>
   {
-    Swal.fire('Kevin', 'Ce site est encore en cours de construction et n\'est disponible que sur pc pour l\'instant. merci ' ,'warning')
-  })
+    Swal.fire(`${parametre.nomEtablissement}`, 'Ce site est encore en cours de construction et n\'est disponible que sur pc pour l\'instant. merci ' ,'warning')
+  }, [])
 
   // Affichage
   return(
@@ -91,6 +95,10 @@ export default function App()
         <Route path="/Statistiques" element={ <Statistiques /> } />
 
         <Route path="/Notification" element={ <Notification /> } />
+
+        <Route path="/Support" element={ <Support /> } />
+
+        <Route path="/Recherches" element={ <Recherches /> } />
 
       </Routes>
     </div>

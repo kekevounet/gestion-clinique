@@ -10,7 +10,7 @@ export default function AjoutAdmin()
 {
   // Déclarariotn
   const { theme } = useTheme();
-  const { setAdministratif, dispatchNotification } = useDonnee();
+  const { setAdministratif, dispatchNotification, dispatchHistorique, parametre } = useDonnee();
   const navigate = useNavigate()
   const [ formData, setFormData ] = useState(
   {
@@ -61,6 +61,16 @@ export default function AjoutAdmin()
         type: "Ajout",
         date: new Date().toLocaleString()
       }
+    });
+    dispatchHistorique({
+      type: "Ajout",
+      payload: {
+        id: Date.now(),
+        type: "Administrateur",
+        nom: `${nom} ${prenom}`,
+        info: `Maîtrise du ${specialite}`,
+        date: new Date().toLocaleString('fr-FR')
+      }
     })
     const newAdministratif =
     {
@@ -81,7 +91,7 @@ export default function AjoutAdmin()
       type: "Ajout",
       payload: newAdministratif,
     });
-    Swal.fire("Clinique de Kevin", "Administrateur ajouté avec succès", "success")
+    Swal.fire(`${parametre.nomEtablissement}`, "Administrateur ajouté avec succès", "success")
     setFormData({
       nom: "",
       prenom: "",

@@ -12,7 +12,7 @@ export default function Medicament()
 {
   // Déclaration
   const { theme } = useTheme();
-  const { medoc, dispatchMedoc, dispatchNotification } = useDonnee();
+  const { medoc, dispatchMedoc, dispatchNotification, parametre } = useDonnee();
   const [ searchTerm, setSearchTerm ] = useState<string>('')
   const styleTableau = `w-[20%] p-3 border-x ${theme === 'clair' ? 'border-zinc-200' : 'border-zinc-800' }`;
 
@@ -20,7 +20,7 @@ export default function Medicament()
   const handleDelete = (id:number) =>
   {
     Swal.fire({
-      title: 'Clinique de Kevin',
+      title: `${parametre.nomEtablissement}`,
       text: "Êtes vous sur de vouloir le supprimer ?",
       icon: "warning",
       showCancelButton: true,
@@ -34,7 +34,7 @@ export default function Medicament()
           type: "Delete",
           payload: id
         })
-        Swal.fire("Clinique de Kevin", "Un médicament a été supprimé", "success");
+        Swal.fire(`${parametre.nomEtablissement}`, "Un médicament a été supprimé", "success");
         dispatchNotification({
           type: "Ajout",
           payload: {
@@ -116,11 +116,11 @@ export default function Medicament()
             (
               filteredTaleau.map((patient)=>(
               <div key={patient.id} className={`w-full min-h-20 flex items-center justify-between text-center text-xl ${theme === 'clair' ? 'bg-zinc-100' : 'bg-zinc-900' }`}>
-                <span className="w-[20%] p-3">{patient.nom}</span>
-                <span className={styleTableau}>{patient.quantite}</span>
-                <span className="w-[20%] p-3">{patient.dateAjout}</span>
-                <span className={styleTableau}>{formatDate(patient.dateExpiration)}</span>
-                <span className="w-[20%] p-3 flex items-center justify-center text-4xl space-x-4">
+                <span className="w-[20%] p-3 overflow-auto">{patient.nom}</span>
+                <span className={`overflow-auto ${styleTableau}`}>{patient.quantite}</span>
+                <span className="w-[20%] p-3 overflow-auto">{patient.dateAjout}</span>
+                <span className={`overflow-auto ${styleTableau}`}>{formatDate(patient.dateExpiration)}</span>
+                <span className="w-[20%] p-3 flex items-center overflow-auto justify-center text-4xl space-x-4">
                   <Link to={`/Medicament/Edit/${patient.id}`} className="text-blue-500 cursor-pointer hover:opacity-60 hover:scale-105 duration-100"><BiEdit data-tooltip-id="Edit-tooltip" data-tooltip-content="Modifier ce patient" /></Link>
                   <span className="text-red-500 cursor-pointer hover:opacity-60 hover:scale-105 duration-100"><BiTrash data-tooltip-id="Delete-tooltip" data-tooltip-content="Supprimer ce patient" onClick={() =>handleDelete(patient.id)} /></span>
                 </span>

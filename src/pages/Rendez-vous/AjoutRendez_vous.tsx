@@ -12,7 +12,7 @@ export default function AjoutRendez_vous()
   const { theme } = useTheme();
   const { meet, dispatchMeet } = useDonnee();
   const navigate = useNavigate();
-  const { dispatchNotification } = useDonnee();
+  const { dispatchNotification, dispatchHistorique, parametre } = useDonnee();
   const InfosPatients = [
     { field: "Nom", type: "text", name: "nom" },
     { field: "Prénom", type: "text", name: "prenom" },
@@ -53,7 +53,7 @@ export default function AjoutRendez_vous()
     dispatchMeet({
       type: "Ajout"
     });
-     dispatchNotification({
+    dispatchNotification({
       type: "Ajout",
       payload: {
         id: Date.now(),
@@ -63,7 +63,17 @@ export default function AjoutRendez_vous()
         date: new Date().toLocaleString('fr-FR')
       }
     })
-    Swal.fire("Clinique de Kevin", "Rendez-vous ajouté avec succès", "success");
+    dispatchHistorique({
+      type: "Ajout",
+      payload: {
+        id: Date.now(),
+        type: "Rendez-vous",
+        nom: `${nom} ${prenom}`,
+        info: `Le ${date} à ${heure} avec ${medecin}`,
+        date: new Date().toLocaleString(),
+      }
+    })
+    Swal.fire(`${parametre.nomEtablissement}`, "Rendez-vous ajouté avec succès", "success");
     navigate('/Rendez-vous');
   }
 

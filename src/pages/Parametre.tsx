@@ -4,13 +4,14 @@ import { useTheme } from "../components/common/Theme"
 import Input from "../components/layouts/Input";
 import { useDonnee } from "../components/common/donnee";
 import Button from "../components/layouts/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 export default function Parametre()
 {
   // Déclaration
   const { theme, toggleTheme } = useTheme();
-  const { parametre, setParametre } = useDonnee();
+  const { parametre, setParametre, dispatchNotification } = useDonnee();
   const [ formData, setFormData ] = useState(parametre);
   const InfosEtablissement = [
     { field: "Nom de l'établissement", type: "text", value: formData.nomEtablissement, name: "nomEtablissement" },
@@ -38,8 +39,23 @@ export default function Parametre()
       ...prev,
       ...formData
     }));
-    alert('Tu te cache mais on te voit')
+    Swal.fire(`${parametre.nomEtablissement}`, "Paramètre a été modifié", "success");
+    dispatchNotification({
+      type: "Ajout",
+      payload: {
+        id: Date.now(),
+        titre: "Paramètre",
+        message: "Paramètre a été modifié",
+        type: "Modification",
+        date: new Date().toLocaleString()
+      }
+    })
   }
+
+  useEffect(() =>
+  {
+    document.title = `${formData.nomEtablissement}`
+  })
 
   // Affichage
   return(
