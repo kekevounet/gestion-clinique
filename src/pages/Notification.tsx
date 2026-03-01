@@ -89,7 +89,7 @@ export default function Notification()
       </div>
 
       {/* Contenu notification */}
-      <div className="w-full h-[91.55%] overflow-auto p-10 grid-cols-3 grid-rows-3 grid gap-4">
+      <div className="w-full min-h-[91.55%] overflow-auto p-10 grid-cols-3 grid gap-4">
 
         {filteredNotif.map(notif => (
           <section key={notif.id} className={`w-full min-h-[20vh] shadow-md  relative duration-300 group ${theme === 'clair' ? 'bg-zinc-100' : 'bg-zinc-900' } `}>

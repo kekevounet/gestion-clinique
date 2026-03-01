@@ -1,11 +1,13 @@
+import { useEffect } from "react";
 import { useDonnee } from "../components/common/donnee";
 import { Line } from "react-chartjs-2";
+import Swal from "sweetalert2";
 
 
 export default function Statistiques()
 {
   const { administratif, docteurs, infirmier } = useDonnee();
-  const { patients, meet } = useDonnee();
+  const { patients, meet, parametre } = useDonnee();
 
 
   const totalConsultations = patients.consultationTableau.length;
@@ -53,11 +55,15 @@ export default function Statistiques()
         label: "Taux infirmier",
         data: generateSin(totalInfirmier, 1, 2),
         tension: 0.4,
-        borderColor: "#f1801b",
+        borderColor: "#28f705",
         pointBackgroundColor: "black"
       }
     ]
   };
+  useEffect(() =>
+  {
+    Swal.fire(`${parametre.nomEtablissement}`, "Ceci est juste un simulation mais il varie en fonction du donnée", "info")
+  }, [])
   return(
     <div className="w-full h-full flex items-center justify-center p-5">
       <Line data={data} />

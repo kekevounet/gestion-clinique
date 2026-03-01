@@ -32,14 +32,13 @@ export default function InfosPatient()
     <div className="w-full h-full flex flex-col">
 
       {/* Header */}
-      <div className={`w-full h-[7.7%] border-b text-3xl flex items-center justify-between ${theme === 'clair' ? 'border-black' : 'border-white' }`}>
+      <div className={`w-full h-[8.45%] border-b-4 text-3xl flex items-center justify-between ${theme === 'clair' ? 'border-zinc-100' : 'border-zinc-900' }`}>
         <span className="w-full flex items-center justify-start ml-5 text-4xl space-x-2">
-          <span className="">MAMINIRINA</span>
-          <span className="">Niavo Olivier</span>
+          <span className="font-bold">Information du patient</span>
         </span>
       </div>
 
-      <div className="w-full h-[92.3%] overflow-auto flex items-center justify-center p-6 gap-2">
+      <div className="w-full h-[91.55%] overflow-auto flex items-center justify-center p-6 gap-2">
         <div className={`w-[80%] max-h-[85%] p-7 space-y-5 shadow-md ${theme === 'clair' ? 'bg-zinc-100' : 'bg-zinc-900' }`}>
 
           {/* Dernière consultation */}
