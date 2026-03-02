@@ -104,7 +104,7 @@ export default function Dashboard()
             data-tooltip-content="Faire une consultation-"
             className={` flex hover:shadow-xl hover:-translate-y-0.5 duration-300 cursor-pointer flex-col space-y-5 text-lg text-center lg:text-2xl justify-center items-center ${style}
           `}>
-            <span className="text-4xl"><FaUserInjured /></span>
+            <span className="text-2xl lg:text-4xl"><FaUserInjured /></span>
             <span className="">Nombre de patients: {patients.consultationTableau.length}</span>
           </Link>
 
@@ -118,7 +118,7 @@ export default function Dashboard()
             {medoc.MedocTableau.map(m => m.quantite < 5 &&
               (
                 <div className="flex py-5 flex-col space-y-5 justify-center items-center">
-                  <span className="text-4xl text-red-600"><BsCapsulePill /></span>
+                  <span className="text-2xl lg:text-4xl text-red-600"><BsCapsulePill /></span>
                   <span className="text-lg lg:text-2xl text-center text-red-600">Le médicament <strong>{m.nom}</strong> est presque épuisé.</span>
                 </div>
               )
@@ -127,7 +127,7 @@ export default function Dashboard()
             {medoc.MedocTableau.length !== 0 &&
               (
                 <div className="flex py-5 flex-col space-y-5 justify-center items-center">
-                  <span className="text-4xl text-blue-600"><BsInfoCircle /></span>
+                  <span className="text-2xl lg:text-4xl text-blue-600"><BsInfoCircle /></span>
                   <span className="text-lg lg:text-2xl text-center text-blue-600">Les informations des médicaments s'affichent ici.</span>
                 </div>
               )
@@ -137,7 +137,7 @@ export default function Dashboard()
               medoc.MedocTableau.length === 0 &&
               (
                 <div className="absolute flex flex-col space-y-5 justify-center items-center">
-                  <span className="text-5xl text-red-600"><FiAlertCircle /></span>
+                  <span className="text-2xl lg:ext-5xl text-red-600"><FiAlertCircle /></span>
                   <span className="text-lg lg:text-2xl text-center">Vous n'avez aucun médicament</span>
                 </div>
               )
@@ -151,7 +151,7 @@ export default function Dashboard()
             data-tooltip-id="RDV"
             data-tooltip-content="Ajouter un rendez-vous"
             className={` flex hover:shadow-xl hover:-translate-y-0.5 duration-300 cursor-pointer flex-col space-y-5 text-lg lg:text-2xl justify-center items-center ${style}`}>
-            <span className="text-4xl"><BiCalendarEdit /></span>
+            <span className="text-2xl lg:text-4xl"><BiCalendarEdit /></span>
             <span className="text-center">Nombre de rendez-vous prévus enregister: {meet.MeetTableau.length}</span>
           </Link>
 
@@ -166,7 +166,7 @@ export default function Dashboard()
                 : 'bg-yellow-900 text-yellow-200'
             }`}
           >
-            <span className="text-4xl">
+            <span className="text-2xl lg:text-4xl">
               <AiOutlineAlert />
             </span>
 
@@ -183,7 +183,7 @@ export default function Dashboard()
 
         </div>
         {/* Pie chart en line ou pie */}
-        <div className={`flex items-center justify-center h-1/4 -mt-24 lg:mt-0 ${style}`}>
+        <div className={`flex items-center justify-center h-1/4 -mt-10 lg:mt-0 ${style}`}>
           <Line data={data} />
         </div>
       </div>
@@ -193,11 +193,11 @@ export default function Dashboard()
         to='/Parametre'
         data-tooltip-id="Chambres"
         data-tooltip-content="Modifier la nombre des chambres"
-        className="w-full h-full grid grid-cols-1 grid-rows-2 gap-6 -mt-24 lg:mt-0"
+        className="w-full h-full grid grid-cols-1 grid-rows-2 gap-6 -mt-10 lg:mt-0"
       >
         {/* Pourcentage en rondelle */}
         <div className={` relative ${style}`}>
-          <span className="absolute top-4 left-4 text-2xl font-bold underline underline-offset-4">Personnels :</span>
+          <span className="absolute top-4 left-4 scale-90 lg:scale-0 text-2xl font-bold underline underline-offset-4">Personnels :</span>
             <ResponsiveContainer width="100%" height="100%" >
               <PieChart>
                 <Pie

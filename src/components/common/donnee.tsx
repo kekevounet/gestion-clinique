@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useReducer, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useReducer, useState } from "react";
 import type { ConsultationReducer, ConsultationReducerState, DonneeType, Medoc, Meet, parametreType } from "./type";
 import { ReducerPersonnel, ReducerConsultation, MeetReducer, ReducerMedoc, NotificationReducer, HistoriqueReducer } from "./Reducer";
 
@@ -60,6 +60,26 @@ export const initialMedocReducer =
   dateExpiration: ""
 }
 
+function useLocalStorage<S, A>(
+    reducer: React.Reducer<S, A>,
+    key: string,
+    initialState: S
+  )
+{
+  const initializer = () =>
+  {
+    const stored = localStorage.getItem(key)
+    return stored ? JSON.parse(stored) : initialState
+  }
+  const [ state, dispatch ] = useReducer(reducer, initialState, initializer)
+
+  useEffect(() =>
+  {
+    localStorage.setItem(key, JSON.stringify(state))
+  }, [ state, dispatch])
+  return [ state, dispatch ] as const
+}
+
 export function DonneeProvider({ children }: { children : React.ReactNode})
 {
   // Déclaration
@@ -76,8 +96,6 @@ export function DonneeProvider({ children }: { children : React.ReactNode})
       nombreChambre: 30
     }
   })
-
-
 
   const initialState: ConsultationReducer =
   {
@@ -99,26 +117,26 @@ export function DonneeProvider({ children }: { children : React.ReactNode})
 
 
   // Personnel
-  const [ docteurs, setDocteurs ] = useReducer(ReducerPersonnel, []);
-  const [ infirmier, setInfirmier ] = useReducer(ReducerPersonnel, []);
-  const [ administratif, setAdministratif ] = useReducer(ReducerPersonnel, []);
+  const [ docteurs, setDocteurs ] = useLocalStorage(ReducerPersonnel,"docteurs", []);
+  const [ infirmier, setInfirmier ] = useLocalStorage(ReducerPersonnel,"infirmier",  []);
+  const [ administratif, setAdministratif ] = useLocalStorage(ReducerPersonnel,"administratif", []);
   // Patient
-  const [ patients, dispatchPatients ] = useReducer(ReducerConsultation, initialState);
+  const [ patients, dispatchPatients ] = useLocalStorage(ReducerConsultation, "patients", initialState);
   // Rendez-vous
-  const [ meet, dispatchMeet ] = useReducer(MeetReducer, initialStateMeet);
+  const [ meet, dispatchMeet ] = useLocalStorage(MeetReducer,'rendez-vous' , initialStateMeet);
   // Médicament
-  const [ medoc, dispatchMedoc ] = useReducer(ReducerMedoc, initialStateMedoc)
+  const [ medoc, dispatchMedoc ] = useLocalStorage(ReducerMedoc, "medicament",  initialStateMedoc)
   // Notification
-  const [ notification, dispatchNotification ] = useReducer(NotificationReducer, [])
+  const [ notification, dispatchNotification ] = useLocalStorage(NotificationReducer, "notification", [])
   // Historique
-  const [ historique, dispatchHistorique ] = useReducer(HistoriqueReducer, []);
+  const [ historique, dispatchHistorique ] = useLocalStorage(HistoriqueReducer, "historique", []);
 
 
   // Patient
 
-  const value =
+  const value = useMemo(() =>(
   {
-    parametre,
+     parametre,
     setParametre,
     docteurs,
     setDocteurs,
@@ -136,7 +154,17 @@ export function DonneeProvider({ children }: { children : React.ReactNode})
     dispatchNotification,
     historique,
     dispatchHistorique,
-  }
+  }),[
+    parametre,
+    docteurs,
+    infirmier,
+    administratif,
+    patients,
+    meet,
+    medoc,
+    notification,
+    historique
+  ]);
 
   useEffect(() =>
   {

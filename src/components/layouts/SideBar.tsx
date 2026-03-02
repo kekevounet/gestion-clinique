@@ -92,7 +92,7 @@ export default function SideBar({ sideOuvert, setSideOuvert }: SideBarProps)
     <>
       <div className={`fixed duration-500 lg:static h-full shadow-md flex flex-col z-40 ${sideOuvert ? 'w-full lg:w-[20%]' : 'w-0 lg:w-[20%]'} ${theme === 'clair' ? 'bg-zinc-100' : 'bg-zinc-900'}`}>
       {/* Titre */}
-      <div className={`w-full min-h-[8%] overflow-auto border-b-4 flex items-center justify-start text-3xl font-bold tracking-wider italic font-[cursive] ${theme === 'clair' ? 'border-zinc-200' : 'border-zinc-800'}`}>
+      <div className={`w-full min-h-[10%] lg:min-h-[8%] overflow-auto border-b-4 flex items-center justify-start text-3xl font-bold tracking-wider italic font-[cursive] ${theme === 'clair' ? 'border-zinc-200' : 'border-zinc-800'}`}>
           <span className="ml-3 py-5">{parametre.nomEtablissement}</span>
         </div>
 

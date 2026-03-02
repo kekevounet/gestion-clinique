@@ -47,7 +47,7 @@ const ProgressCircle: React.FC<ProgressCircleProps> = ({
   const strokeDashoffset = circumference * (1 - progress);
 
   return (
-    <svg width={size} height={size}>
+    <svg width={size} height={size} className="scale-50 lg:scale-100">
       <circle
         cx={size / 2}
         cy={size / 2}
