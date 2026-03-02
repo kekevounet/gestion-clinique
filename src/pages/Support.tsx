@@ -38,16 +38,16 @@ export default function Support()
   ];
 
   return(
-    <div className="w-full h-full flex flex-col p-5 overflow-auto justify-between px-10">
+    <div className="w-full h-screen lg:h-full flex flex-col p-2 overflow-auto justify-between lg:px-10">
 
       {/* Contenu principal */}
-      <section className="w-full h-[92%] p-5 flex justify-center items-center">
+      <section className="w-full h-[90%] lg:p-5 flex justify-center items-center">
         <div
-          className={`w-[70%] h-full overflow-auto ${
+          className={`w-full lg:w-[70%] h-[90%] lg:h-full overflow-auto ${
             theme === 'clair'
               ? 'bg-zinc-100 text-zinc-800'
               : 'bg-zinc-900 text-zinc-100'
-          } p-16 shadow-xl flex flex-col justify-between`}
+          } lg:p-[5%] p-[4%] shadow-xl flex flex-col justify-between`}
         >
 
           {/* Header */}
@@ -61,7 +61,7 @@ export default function Support()
 
           {/* FAQ */}
           <div className="flex-1">
-            <h2 className="text-3xl font-light mb-10 cursor-pointer">
+            <h2 className="text-3xl mb-10 cursor-pointer">
               Questions fréquentes
             </h2>
 
@@ -71,8 +71,8 @@ export default function Support()
                   key={index}
                   className={`rounded transition cursor-pointer ${
                     theme === 'clair'
-                      ? 'bg-white shadow-sm'
-                      : 'bg-zinc-800 shadow-md'
+                      ? 'bg-zinc-200 shadow-sm'
+                      : 'bg-zinc-900 shadow-md'
                   }`}
                 >
                   <button
@@ -81,7 +81,7 @@ export default function Support()
                     }
                     className="w-full flex justify-between items-center p-6 text-left"
                   >
-                    <span className="text-lg font-medium">
+                    <span className="text-lg font-medium cursor-pointer">
                       {faq.question}
                     </span>
 

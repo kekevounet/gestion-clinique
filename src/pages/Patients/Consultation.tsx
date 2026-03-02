@@ -117,13 +117,13 @@ export default function Consultation()
 
   // Affichage
   return(
-    <div className="w-full h-full flex items-center justify-center">
-      <form onSubmit={handleSubmit} className={`w-[80%] h-[80%] p-7 space-y-7 overflow-auto ${theme === 'clair' ? 'bg-zinc-100' : 'bg-zinc-900' }`}>
+    <div className="w-full h-full flex py-[10%] lg:py-[0%] items-center justify-center">
+      <form onSubmit={handleSubmit} className={` w-[90%] lg:w-[80%] lg:h-[80%] p-7 space-y-7 overflow-auto ${theme === 'clair' ? 'bg-zinc-100' : 'bg-zinc-900' }`}>
 
       {/* Information patient */}
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold border-b pb-3">Informations du patient</h2>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {InfosPatients.map((patient, index) => (
             <div key={index} className="flex flex-col">
               <label className="mb-1 font-medium">{patient.field}</label>
@@ -142,7 +142,7 @@ export default function Consultation()
       {/* Information Consultation */}
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold border-b pb-3">Informations du consultation</h2>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {InfosConsultations.map((consultation, index) => (
             <div key={index} className="flex flex-col">
               <label className="mb-1 font-medium">{consultation.field}</label>
@@ -161,7 +161,7 @@ export default function Consultation()
       {/* Information examen / signes vitaux */}
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold border-b pb-3">Informations signes vitaux</h2>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {InfosSignesVitaux.map((signesVitaux, index) => (
             <div key={index} className="flex flex-col">
               <label className="mb-1 font-medium">{signesVitaux.field}</label>
@@ -193,7 +193,7 @@ export default function Consultation()
       {/* Prescription */}
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold border-b pb-3">Prescription</h2>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {InfosPrescription.map((Prescription, index) => (
             <div key={index} className="flex flex-col">
               <label className="mb-1 font-medium">{Prescription.field}</label>
@@ -212,7 +212,7 @@ export default function Consultation()
       {/* Examens demandés */}
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold border-b pb-3">Examens demandés</h2>
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
           {InfosExamens.map((examen, index) => (
             <div key={index} className="flex flex-row items-center space-x-3">
               <label className="mb-1 font-medium">{examen.field}</label>
@@ -244,7 +244,7 @@ export default function Consultation()
       {/* Décision Finale */}
       <section className="space-y-4">
         <h2 className="text-xl font-semibold border-b pb-2">Décision Finale</h2>
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
           {InfosDécisions.map((decision, index) => (
             <div key={index} className="flex items-center gap-2">
               <InputCheck

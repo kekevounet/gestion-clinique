@@ -76,17 +76,17 @@ export default function Recherches()
   }, [query, patients, meet, medoc, docteurs, infirmier, administratif]);
 
   return(
-    <div className="w-full h-full flex flex-col justify-center items-center px-10">
+    <div className="w-full h-screen lg:h-full flex flex-col justify-center items-center px-[4%] lg:px-[4%]">
 
       <div
-        className={`w-full h-[90%] p-16  shadow-xl ${
+        className={`w-full h-[90%] p-[6%] lg:p-[5%]  shadow-xl ${
           theme === 'clair'
             ? 'bg-zinc-100 text-zinc-800'
             : 'bg-zinc-900 text-zinc-100'
         }`}
       >
 
-        <h1 className="text-4xl font-bold mb-10">
+        <h1 className="text-3xl lg:text-4xl font-bold mb-10">
           Recherche Globale
         </h1>
 
@@ -97,8 +97,8 @@ export default function Recherches()
           onChange={(e) => setQuery(e.target.value)}
           className={`w-full p-4 rounded-xl transition ${
             theme === 'clair'
-              ? 'bg-white border-zinc-300 focus:border-zinc-600'
-              : 'bg-zinc-800 border-zinc-700 focus:border-zinc-400'
+              ? 'bg-white'
+              : 'bg-zinc-800'
           }`}
         />
 

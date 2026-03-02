@@ -110,13 +110,13 @@ export default function AjoutAdmin()
 
   // Affichage
   return(
-    <div className="w-full h-full flex items-center justify-center">
-      <form onSubmit={handleSubmit} className={`w-[80%] max-h-[80%] p-7 space-y-7 overflow-auto ${theme === 'clair' ? 'bg-zinc-100' : 'bg-zinc-900' }`}>
+    <div className="w-full h-screen lg:h-full flex items-center justify-center">
+      <form onSubmit={handleSubmit} className={`w-[90%] lg:w-[80%] max-h-[90%] p-7 space-y-7 overflow-auto ${theme === 'clair' ? 'bg-zinc-100' : 'bg-zinc-900' }`}>
 
       {/* Information docteur */}
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold border-b pb-3">Informations de l'administrateur</h2>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {InfosAdministratif.map((Admin, index) => (
             <div key={index} className="flex flex-col">
               <label className="mb-1 font-medium">{Admin.field}</label>
@@ -138,7 +138,7 @@ export default function AjoutAdmin()
       {/* Information contact */}
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold border-b pb-3">Informations du contact</h2>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {InfoAdministratifContact.map((AdminContact, index) => (
             <div key={index} className="flex flex-col">
               <label className="mb-1 font-medium">{AdminContact.field}</label>
@@ -160,7 +160,7 @@ export default function AjoutAdmin()
       {/* Information prefession */}
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold border-b pb-3">Informations professionnel</h2>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {InfoAdministratifProfession.map((AdminProfession, index) => (
             <div key={index} className="flex flex-col">
               <label className="mb-1 font-medium">{AdminProfession.field}</label>

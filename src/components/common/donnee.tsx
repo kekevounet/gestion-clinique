@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer, useState } from "react";
+import { createContext, useContext, useEffect, useReducer, useState } from "react";
 import type { ConsultationReducer, ConsultationReducerState, DonneeType, Medoc, Meet, parametreType } from "./type";
 import { ReducerPersonnel, ReducerConsultation, MeetReducer, ReducerMedoc, NotificationReducer, HistoriqueReducer } from "./Reducer";
 
@@ -63,7 +63,10 @@ export const initialMedocReducer =
 export function DonneeProvider({ children }: { children : React.ReactNode})
 {
   // Déclaration
-  const [ parametre, setParametre ] = useState<parametreType>(
+  const [ parametre, setParametre ] = useState<parametreType>(() =>
+  {
+    const savedParametre = localStorage.getItem('parametre')
+    return savedParametre ? JSON.parse(savedParametre) :
     {
       nomEtablissement: "Gestion de clinique",
       adresse: "IAG 05 J Itaosy",
@@ -71,7 +74,8 @@ export function DonneeProvider({ children }: { children : React.ReactNode})
       emailOfficiel: "niavo.kevin9@gmail.com",
       couleur: "#10b981",
       nombreChambre: 30
-    });
+    }
+  })
 
 
 
@@ -107,7 +111,7 @@ export function DonneeProvider({ children }: { children : React.ReactNode})
   // Notification
   const [ notification, dispatchNotification ] = useReducer(NotificationReducer, [])
   // Historique
-  const [ historique, dispatchHistorique ] = useReducer(HistoriqueReducer, [])
+  const [ historique, dispatchHistorique ] = useReducer(HistoriqueReducer, []);
 
 
   // Patient
@@ -133,6 +137,11 @@ export function DonneeProvider({ children }: { children : React.ReactNode})
     historique,
     dispatchHistorique,
   }
+
+  useEffect(() =>
+  {
+    localStorage.setItem('parametre', JSON.stringify(parametre))
+  }, [parametre])
 
   // Affichage
   return(

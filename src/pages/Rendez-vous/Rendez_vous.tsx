@@ -57,10 +57,10 @@ export default function Rendez_vous()
 
   // Affichage
   return(
-    <div className="w-full h-full flex flex-col">
+    <div className="w-full h-screen lg:h-full flex flex-col overflow-auto">
 
       {/* Ajouter, Recherche */}
-      <div className={`w-full h-[8.45%] border-b-4 text-3xl flex items-center justify-between ${theme === 'clair' ? 'border-zinc-100' : 'border-zinc-900' }`}>
+      <div className={`w-[300%] lg:w-full h-[8.45%] border-b-4 text-3xl flex items-center justify-between ${theme === 'clair' ? 'border-zinc-100' : 'border-zinc-900' }`}>
 
         {/* Ajouter un patient */}
         <Link className="flex items-center justify-start ml-5 text-4xl" to="/Rendez-vous/Ajout">
@@ -72,7 +72,7 @@ export default function Rendez_vous()
         </Link>
 
         {/* Barre de recherche */}
-        <div className="flex items-center w-full h-full text-xl justify-end mr-5">
+        <div className="flex items-center w-full h-full text-xl justify-end mr-20 lg:mr-5">
           <Input
           placeholder="Rechercher ici ... "
           type="text"
@@ -83,7 +83,7 @@ export default function Rendez_vous()
       </div>
 
       {/* Listes des patients */}
-      <div className="w-full h-[91.55%] overflow-auto flex flex-col p-6 gap-2">
+      <div className=" w-[300%] lg:w-full h-[91.55%] overflow-auto flex flex-col p-6 gap-2">
 
         {/* Information patient titre */}
         <div className={`w-full min-h-20 flex items-center justify-between text-center font-bold text-xl ${theme === 'clair' ? 'bg-zinc-100' : 'bg-zinc-900' }`}>

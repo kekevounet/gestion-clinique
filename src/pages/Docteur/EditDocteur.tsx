@@ -92,13 +92,13 @@ export default function EditDocteur()
 
   // Affichage
   return(
-    <div className="w-full h-full flex items-center justify-center">
-      <form onSubmit={handleEdit} className={`w-[80%] max-h-[80%] p-7 space-y-7 overflow-auto ${theme === 'clair' ? 'bg-zinc-100' : 'bg-zinc-900' }`}>
+    <div className="w-full h-screen lg:h-full flex items-center justify-center">
+      <form onSubmit={handleEdit} className={`w-[90%] lg:w-[80%] max-h-[80%] p-7 space-y-7 overflow-auto ${theme === 'clair' ? 'bg-zinc-100' : 'bg-zinc-900' }`}>
 
       {/* Information docteur */}
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold border-b pb-3">Informations du docteur</h2>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {InfosDocteurs.map((InfosDocteur, index) => (
             <div key={index} className="flex flex-col">
               <label className="mb-1 font-medium">{InfosDocteur.field}</label>
@@ -120,7 +120,7 @@ export default function EditDocteur()
       {/* Information contact */}
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold border-b pb-3">Informations du contact</h2>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {InfoDocteursContact.map((contact, index) => (
             <div key={index} className="flex flex-col">
               <label className="mb-1 font-medium">{contact.field}</label>
@@ -142,7 +142,7 @@ export default function EditDocteur()
       {/* Information prefession */}
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold border-b pb-3">Informations professionnel</h2>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {InfoDocteursProfession.map((profession, index) => (
             <div key={index} className="flex flex-col">
               <label className="mb-1 font-medium">{profession.field}</label>

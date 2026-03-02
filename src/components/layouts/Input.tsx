@@ -18,6 +18,7 @@ export default function Input({ value, placeholder, type, className, name, onCha
         ${styleInput}
         ${className ?? ""}
       `}
+      required
     />
   )
 }
@@ -32,6 +33,7 @@ export function TextArea({ value, placeholder, name, onChange }: TextareaType) {
       placeholder={placeholder}
       onChange={onChange}
       className={`p-2 border-2 placeholder:italic min-h-40 col-span-3 rounded-lg outline-none focus:ring-2 px-3 duration-300 ring-(--couleur)  ${theme === 'clair' ? 'border-zinc-200' : 'border-zinc-800' }`}
+      required
     />
   )
 }
@@ -55,6 +57,7 @@ export function InputCheck({ value, placeholder, type, className, name, onChange
         ${styleInput}
         ${className ?? ""}
       `}
+      required
     />
   )
 }

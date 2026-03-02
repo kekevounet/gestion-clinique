@@ -218,3 +218,9 @@ export type HistoriqueState =
 export type HistoriqueAction =
   | { type: "Ajout", payload: HistoriqueState }
   | { type: "Delete", payload: number }
+
+export type SideBarProps =
+{
+  sideOuvert: boolean
+  setSideOuvert: React.Dispatch<React.SetStateAction<boolean>>
+}

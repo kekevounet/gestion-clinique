@@ -80,13 +80,13 @@ export default function AjoutRendez_vous()
 
   // Affichage
   return(
-    <div className="w-full h-full flex items-center justify-center">
-      <form onSubmit={handleSubmit} className={`w-[80%] max-h-[80%] p-7 space-y-7 overflow-auto ${theme === 'clair' ? 'bg-zinc-100' : 'bg-zinc-900' }`}>
+    <div className="w-full lg:h-full h-screen flex py-[10%] lg:py-[0%] items-center justify-center">
+      <form onSubmit={handleSubmit} className={`w-[90%] lg:w-[80%] max-h-full p-7 space-y-7 overflow-auto ${theme === 'clair' ? 'bg-zinc-100' : 'bg-zinc-900' }`}>
 
       {/* Information patient */}
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold border-b pb-3">Informations du patient</h2>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {InfosPatients.map((patient, index) => (
             <div key={index} className="flex flex-col">
               <label className="mb-1 font-medium">{patient.field}</label>
@@ -105,7 +105,7 @@ export default function AjoutRendez_vous()
       {/* Information Consultation */}
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold border-b pb-3">Informations du rendez-vous</h2>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {AjoutRendez_vous.map((Ajout, index) => (
             <div key={index} className="flex flex-col">
               <label className="mb-1 font-medium">{Ajout.field}</label>
@@ -123,7 +123,7 @@ export default function AjoutRendez_vous()
 
       <section className="space-y-4">
         <h2 className="text-xl font-semibold border-b pb-2">Status du rendez-vous</h2>
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
           {StatusRendez_vous.map((status, index) => (
             <div key={index} className="flex items-center gap-2">
               <InputCheck

@@ -64,8 +64,9 @@ export default function Statistiques()
   {
     Swal.fire(`${parametre.nomEtablissement}`, "Ceci est juste un simulation mais il varie en fonction du donnée", "info")
   }, [])
+
   return(
-    <div className="w-full h-full flex items-center justify-center p-5">
+    <div className="w-[110%] lg:w-full h-screen lg:scale-none scale-[170%] lg:h-full flex items-center justify-center lg:p-5 rotate-90 lg:rotate-0">
       <Line data={data} />
     </div>
   )

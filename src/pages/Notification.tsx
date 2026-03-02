@@ -69,10 +69,10 @@ export default function Notification()
     <div className="w-full h-full flex flex-col relative">
 
       {/* recherche barre en haut */}
-      <div className={`w-full min-h-[8.45%] border-b-4 text-3xl flex items-center justify-between ${theme === 'clair' ? 'border-zinc-100' : 'border-zinc-900' }`}>
+      <div className={`w-full min-h-[15vh] lg:min-h-[8.45%] border-b-4 text-3xl flex items-center flex-col lg:flex-row justify-around ${theme === 'clair' ? 'border-zinc-100' : 'border-zinc-900' }`}>
 
         {/* Texte */}
-        <div className="flex items-center w-full justify-start ml-5 text-4xl font-bold">
+        <div className="flex items-center w-full justify-start ml-5 text-2xl lg:text-4xl font-bold">
           Centre de notification
         </div>
 
@@ -89,10 +89,10 @@ export default function Notification()
       </div>
 
       {/* Contenu notification */}
-      <div className="w-full min-h-[91.55%] overflow-auto p-10 grid-cols-3 grid gap-4">
+      <div className="w-full h-[91.55%] overflow-auto p-[5%] lg:p-[2%] grid-cols-1 lg:grid-cols-3 grid gap-4">
 
         {filteredNotif.map(notif => (
-          <section key={notif.id} className={`w-full min-h-[20vh] shadow-md  relative duration-300 group ${theme === 'clair' ? 'bg-zinc-100' : 'bg-zinc-900' } `}>
+          <section key={notif.id} className={`w-full min-h-[25vh] lg:h-[vh] shadow-md  relative duration-300 group ${theme === 'clair' ? 'bg-zinc-100' : 'bg-zinc-900' } `}>
             <div className={`w-full h-[30%] flex justify-between items-center`}>
               <p className={`ml-4 text-2xl font-bold
                 ${notif.type === 'Modification' ? 'text-blue-500' :
@@ -113,8 +113,8 @@ export default function Notification()
       </div>
 
         {notification.length >= 2 && (
-          <section onClick={handleDeleteAll} className="fixed bottom-5 right-5 w-20 h-20 z-50 bg-red-100 border border-red-700 flex items-center justify-center rounded-full">
-            <BiTrash className="text-5xl text-red-700 cursor-pointer" />
+          <section onClick={handleDeleteAll} className="fixed bottom-5 right-5 w-16 h-16 lg:w-20 lg:h-20 z-50 bg-red-100 border border-red-700 flex items-center justify-center rounded-full">
+            <BiTrash className="text-4xl lg:text-5xl text-red-700 cursor-pointer" />
           </section>
         )}
 

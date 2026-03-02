@@ -59,8 +59,8 @@ export default function Parametre()
 
   // Affichage
   return(
-    <div className="w-full h-full flex items-center justify-center">
-      <form onSubmit={handleSubmit} className={`w-[80%] max-h-[80%] p-7 space-y-7 overflow-auto ${theme === 'clair' ? 'bg-zinc-100' : 'bg-zinc-900' }`}>
+    <div className="w-full h-screen lg:h-full flex items-center justify-center">
+      <form onSubmit={handleSubmit} className={`w-[90%] lg:w-[80%] max-h-[80%] p-7 space-y-7 overflow-auto ${theme === 'clair' ? 'bg-zinc-100' : 'bg-zinc-900' }`}>
 
         {/* Paramètre générale */}
         <section className="space-y-4">
@@ -75,7 +75,7 @@ export default function Parametre()
               }
             </span>
           </h2>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {InfosEtablissement.map((Etablissement, index) => (
               <div key={index} className="flex flex-col">
                 <label className="mb-1 font-medium">{Etablissement.field}</label>

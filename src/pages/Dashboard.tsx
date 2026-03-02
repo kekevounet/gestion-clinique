@@ -91,25 +91,35 @@ export default function Dashboard()
 
   // Affichage
   return(
-    <div className="w-full h-full grid grid-cols-2 grid-rows-1 gap-6 p-6">
+    <div className="w-full h-[200vh] lg:h-full flex flex-col lg:grid grid-cols-1 lg:grid-cols-2 grid-rows-1 gap-6 p-6">
       {/* Coté gauche avec des petit bedebe */}
       <div className="w-full h-full grid grid-cols-1 grid-rows-2 gap-6">
         {/* Pourcentage en rondelle */}
-        <div className="w-full h-full grid grid-cols-2 grid-rows-2 gap-3">
+        <div className="w-full lg:h-full h-[80%] grid grid-cols-2 grid-rows-2 gap-3">
 
           {/* Nombre de patient */}
-          <Link to='/Consultation' data-tooltip-id="Patients" data-tooltip-content="Faire une consultation-"  className={` flex hover:shadow-xl hover:-translate-y-0.5 duration-300 cursor-pointer flex-col space-y-5 text-2xl justify-center items-center ${style}`}>
+          <Link
+            to='/Consultation'
+            data-tooltip-id="Patients"
+            data-tooltip-content="Faire une consultation-"
+            className={` flex hover:shadow-xl hover:-translate-y-0.5 duration-300 cursor-pointer flex-col space-y-5 text-lg text-center lg:text-2xl justify-center items-center ${style}
+          `}>
             <span className="text-4xl"><FaUserInjured /></span>
             <span className="">Nombre de patients: {patients.consultationTableau.length}</span>
           </Link>
 
           {/* Médicament */}
-          <Link to='/Medicament/Ajout' data-tooltip-id="Médicaments" data-tooltip-content="Ajouter un médicament" className={`flex hover:shadow-xl hover:-translate-y-0.5 duration-300 cursor-pointer py-12 relative items-center flex-col overflow-auto space-y-10 ${style}`}>
+          <Link
+            to='/Medicament/Ajout'
+            data-tooltip-id="Médicaments"
+            data-tooltip-content="Ajouter un médicament"
+            className={`flex hover:shadow-xl hover:-translate-y-0.5 duration-300 cursor-pointer py-12 relative items-center flex-col overflow-auto space-y-10 ${style}
+          `}>
             {medoc.MedocTableau.map(m => m.quantite < 5 &&
               (
                 <div className="flex py-5 flex-col space-y-5 justify-center items-center">
                   <span className="text-4xl text-red-600"><BsCapsulePill /></span>
-                  <span className="text-2xl text-center text-red-600">Le médicament <strong>{m.nom}</strong> est presque épuisé.</span>
+                  <span className="text-lg lg:text-2xl text-center text-red-600">Le médicament <strong>{m.nom}</strong> est presque épuisé.</span>
                 </div>
               )
             )}
@@ -118,7 +128,7 @@ export default function Dashboard()
               (
                 <div className="flex py-5 flex-col space-y-5 justify-center items-center">
                   <span className="text-4xl text-blue-600"><BsInfoCircle /></span>
-                  <span className="text-2xl text-center text-blue-600">Les informations des médicaments s'affichent ici.</span>
+                  <span className="text-lg lg:text-2xl text-center text-blue-600">Les informations des médicaments s'affichent ici.</span>
                 </div>
               )
             }
@@ -128,7 +138,7 @@ export default function Dashboard()
               (
                 <div className="absolute flex flex-col space-y-5 justify-center items-center">
                   <span className="text-5xl text-red-600"><FiAlertCircle /></span>
-                  <span className="text-2xl text-center">Vous n'avez aucun médicament</span>
+                  <span className="text-lg lg:text-2xl text-center">Vous n'avez aucun médicament</span>
                 </div>
               )
             }
@@ -136,14 +146,21 @@ export default function Dashboard()
           </Link>
 
           {/* Nombrede  RDV */}
-          <Link to='/Rendez-vous/Ajout' data-tooltip-id="RDV" data-tooltip-content="Ajouter un rendez-vous" className={` flex hover:shadow-xl hover:-translate-y-0.5 duration-300 cursor-pointer flex-col space-y-5 text-2xl justify-center items-center ${style}`}>
+          <Link
+            to='/Rendez-vous/Ajout'
+            data-tooltip-id="RDV"
+            data-tooltip-content="Ajouter un rendez-vous"
+            className={` flex hover:shadow-xl hover:-translate-y-0.5 duration-300 cursor-pointer flex-col space-y-5 text-lg lg:text-2xl justify-center items-center ${style}`}>
             <span className="text-4xl"><BiCalendarEdit /></span>
             <span className="text-center">Nombre de rendez-vous prévus enregister: {meet.MeetTableau.length}</span>
           </Link>
 
           {/* Rendez-vous */}
-          <Link to='/Rendez-vous' data-tooltip-id="RDV2" data-tooltip-content="Voir tous les rendez-vous"
-            className={`flex hover:shadow-xl hover:-translate-y-0.5 duration-300 cursor-pointer space-y-5 flex-col text-2xl justify-center text-center items-center ${
+          <Link
+            to='/Rendez-vous'
+            data-tooltip-id="RDV2"
+            data-tooltip-content="Voir tous les rendez-vous"
+            className={`flex hover:shadow-xl hover:-translate-y-0.5 duration-300 cursor-pointer space-y-5 flex-col text-lg lg:text-2xl justify-center text-center items-center ${
               theme === 'clair'
                 ? 'bg-yellow-100 text-yellow-800'
                 : 'bg-yellow-900 text-yellow-200'
@@ -166,13 +183,18 @@ export default function Dashboard()
 
         </div>
         {/* Pie chart en line ou pie */}
-        <div className={`flex items-center justify-center ${style}`}>
+        <div className={`flex items-center justify-center h-1/4 -mt-24 lg:mt-0 ${style}`}>
           <Line data={data} />
         </div>
       </div>
 
       {/* Coté droite avec deux séparation */}
-      <Link to='/Parametre' data-tooltip-id="Chambres" data-tooltip-content="Modifier la nombre des chambres" className="w-full h-full grid grid-cols-1 grid-rows-2 gap-6">
+      <Link
+        to='/Parametre'
+        data-tooltip-id="Chambres"
+        data-tooltip-content="Modifier la nombre des chambres"
+        className="w-full h-full grid grid-cols-1 grid-rows-2 gap-6 -mt-24 lg:mt-0"
+      >
         {/* Pourcentage en rondelle */}
         <div className={` relative ${style}`}>
           <span className="absolute top-4 left-4 text-2xl font-bold underline underline-offset-4">Personnels :</span>

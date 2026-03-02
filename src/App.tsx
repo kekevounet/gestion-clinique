@@ -1,3 +1,4 @@
+import { FaBars } from "react-icons/fa";
 import Dashboard from "./pages/Dashboard";
 import { Routes, Route } from 'react-router-dom';
 import SideBar from "./components/layouts/SideBar";
@@ -29,7 +30,7 @@ import AjoutMedicament from "./pages/Medicament/AjoutMedicament";
 import EditMedicament from "./pages/Medicament/EditMedicament";
 import Statistiques from "./pages/Statistiques";
 import Notification from "./pages/Notification";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import Support from "./pages/Support";
 import { useDonnee } from "./components/common/donnee";
@@ -40,7 +41,13 @@ export default function App()
   // Déclaration
   const { theme } = useTheme();
   const { parametre } = useDonnee();
+  const [ sideOuvert, setSideOuvert ] = useState<boolean>(false)
   // Comportement
+  const handleHideSideBars = () =>
+  {
+    setSideOuvert(!sideOuvert)
+  }
+
   useEffect(() =>
   {
     Swal.fire(`${parametre.nomEtablissement}`, 'Ce site est encore en cours de construction et n\'est disponible que sur pc pour l\'instant. merci ' ,'warning')
@@ -48,8 +55,8 @@ export default function App()
 
   // Affichage
   return(
-    <div className={`w-full h-screen flex overflow-hidden ${theme === 'clair' ? 'bg-zinc-200 text-black' : 'bg-zinc-800 text-white' }`}>
-      <SideBar />
+    <div className={`w-full h-auto lg:h-screen lg:flex overflow-hidden ${theme === 'clair' ? 'bg-zinc-200 text-black' : 'bg-zinc-800 text-white' }`}>
+      <SideBar sideOuvert={ sideOuvert } setSideOuvert={ setSideOuvert } />
       <Routes>
         <Route path="/" element={ <Dashboard /> } />
 
@@ -101,6 +108,11 @@ export default function App()
         <Route path="/Recherches" element={ <Recherches /> } />
 
       </Routes>
+
+      <section className="fixed z-50 text-5xl right-3 top-3 lg:hidden">
+        <FaBars onClick={handleHideSideBars} />
+      </section>
+
     </div>
   )
 }
