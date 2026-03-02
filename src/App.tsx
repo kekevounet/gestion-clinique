@@ -50,7 +50,7 @@ export default function App()
 
   useEffect(() =>
   {
-    Swal.fire(`${parametre.nomEtablissement}`, 'Ce site est encore en cours de construction et n\'est disponible que sur pc pour l\'instant. merci ' ,'warning')
+    Swal.fire(`${parametre.nomEtablissement}`, "Tout vos données seront stocké dans votre navigateur" , 'info')
   }, [])
 
   // Affichage
