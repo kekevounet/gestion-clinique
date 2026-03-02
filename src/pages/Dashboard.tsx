@@ -95,14 +95,14 @@ export default function Dashboard()
       {/* Coté gauche avec des petit bedebe */}
       <div className="w-full h-full grid grid-cols-1 grid-rows-2 gap-6">
         {/* Pourcentage en rondelle */}
-        <div className="w-full lg:h-full h-[80%] grid grid-cols-2 grid-rows-2 gap-3">
+        <div className="w-full lg:h-full h-[90%] grid grid-cols-2 grid-rows-2 gap-3">
 
           {/* Nombre de patient */}
           <Link
             to='/Consultation'
             data-tooltip-id="Patients"
             data-tooltip-content="Faire une consultation-"
-            className={` flex hover:shadow-xl hover:-translate-y-0.5 duration-300 cursor-pointer flex-col space-y-5 text-lg text-center lg:text-2xl justify-center items-center ${style}
+            className={` flex hover:shadow-xl hover:-translate-y-0.5 overflow-auto duration-300 cursor-pointer flex-col space-y-5 text-lg text-center lg:text-2xl justify-center items-center ${style}
           `}>
             <span className="text-2xl lg:text-4xl"><FaUserInjured /></span>
             <span className="">Nombre de patients: {patients.consultationTableau.length}</span>
@@ -150,7 +150,7 @@ export default function Dashboard()
             to='/Rendez-vous/Ajout'
             data-tooltip-id="RDV"
             data-tooltip-content="Ajouter un rendez-vous"
-            className={` flex hover:shadow-xl hover:-translate-y-0.5 duration-300 cursor-pointer flex-col space-y-5 text-lg lg:text-2xl justify-center items-center ${style}`}>
+            className={` flex hover:shadow-xl hover:-translate-y-0.5 overflow-auto duration-300 cursor-pointer flex-col space-y-5 text-lg lg:text-2xl justify-center items-center ${style}`}>
             <span className="text-2xl lg:text-4xl"><BiCalendarEdit /></span>
             <span className="text-center">Nombre de rendez-vous prévus enregister: {meet.MeetTableau.length}</span>
           </Link>
@@ -160,7 +160,7 @@ export default function Dashboard()
             to='/Rendez-vous'
             data-tooltip-id="RDV2"
             data-tooltip-content="Voir tous les rendez-vous"
-            className={`flex hover:shadow-xl hover:-translate-y-0.5 duration-300 cursor-pointer space-y-5 flex-col text-lg lg:text-2xl justify-center text-center items-center ${
+            className={`flex hover:shadow-xl hover:-translate-y-0.5 overflow-auto duration-300 cursor-pointer space-y-5 flex-col text-lg lg:text-2xl justify-center text-center items-center ${
               theme === 'clair'
                 ? 'bg-yellow-100 text-yellow-800'
                 : 'bg-yellow-900 text-yellow-200'
